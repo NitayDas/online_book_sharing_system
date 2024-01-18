@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        body{
+            background-color: #d6dbdf ;
+        }
+        .container-fluid{
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-4"></div>
+           <div class="col-md-5">
+                <div class="container-fluid" style="background-color: #1111">
+                    <h2 style="color:red">Confirm Deletion</h2>
+                    <p>Are you sure you want to delete the book <strong>"{{ book.title }}"</strong> ?</p>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body {
+        background-color:   #ccd1d1;
+       }
+      .hover-element {
+            width: 100px;
+            height: 40px;
+            background-color:#839192;
+            text-align: center;
+            cursor: pointer;
+        }
+
+      .hover-element:hover {
+            background-color:#2c3e50 ;
+        }
+    </style>
+
+    <title>Readers</title>
+</head>
+<body>
+   
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #5F9EA0">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="{% url 'home' %}"><strong class="navbar-brand " href="#" style="color:#273746;margin:5px ">Online Book Sharing System</strong></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><i><a href={% url 'profile' username=Username %} class="btn " style="color:black;margin:14px 0px 0px 40px">Profile</a></i></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 10px 5px 0px">Log out</a></li>
+      </ul>  
+    </div>
+  </nav>
+</div> 
+
+
+  <div class="container-fluid">
+    <div class-"row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5">
+          <div class="container-fluid" style="background-color:  #aab7b8  ">
+            <h4 class="text-center" style="color:  #212f3d "><strong>List of Readers </strong></h4><br>
+            <ul type="fa fa-circle">
+              {% for item in user %}
+               <div class="container-fluid">
+               <li><h4 class="hover-element btn"><a href={% url 'profile' username=item.username %} style="color: #17202a;text-decoration:none">{{ item.username }}</a></li></h4>
+               {% comment %} <a href={% url 'send_message' receiver_id=item.id %}>Send Message</a> {% endcomment %}
+               </div>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+    
+    </body>
+    </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center; 
+        }
+
+        body{
+          background-color:  #d6dbdf  ;
+        }
+    </style>
+    
+</head>
+</head>
+<body>
+
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:#5F9EA0">
+    <div class="container-fluid">
+      <div class="navbar-header">
+       <a href="{% url 'home' %}"><strong class="navbar-brand "  style="color:  #273746; margin:5px">Online Book Sharing System</strong></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><i><a href={% url 'profile' username=user2.username %} class="btn " style="color:black;margin:15px 0px 0px 50px">profile</a></i></li>
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><i><a href={% url 'booklist' username=user2.username %} class="btn " style="color:white;margin:15px 0px 0px 50px">Booklist</a></i></li>
+      </ul> 
+
+      {% if user == user2 %}
+      <ul class="nav navbar-nav">
+        <li class="active"><i><a href={% url 'see_book_request' %} class="btn " style="color:black;margin:15px 0px 0px 50px">Book requests</a></i></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><i><a href={% url 'borrowing_history' %} class="btn " style="color:black;margin:15px 0px 0px 50px">Borrowing history</a></i></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" style="color:black;margin:10px 0px 0px 0px">Hi,{{ user.username }}</a></li>
+        <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 20px 0px 30px">Log out</a></li>
+      </ul> 
+      {% endif %}
+    </div>
+  </nav> 
+</div>
+       
+         
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-5">
+                {% if messages %}
+                <div class="messages text-center" style="background-color:#333">
+                  {% for message in messages %}
+                    <h3 style="color:green">{{ message }}</h3>
+                  {% endfor %}
+                </div><br><br>
+               {% endif %}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+       </div>
+        
+   
+    <div class="container-fluid">
+        <div class-"row">
+           <div class="col-md-2">
+           </div>
+           <div class="col-md-7">
+             <div class="container-fluid" style="background-color: #1111">
+                <h3 class="text-center"><strong>Booklist for {{ user2.username }}</strong></h3><br>
+                <ul>
+                <table>
+                    <tr >
+                      <th>Book ID</th><th>Book Name </th> <th> Author Name </th>
+                       <th>status</th><th>Genre</th>
+                      {% if user == user2 %}<th>Update Books</th>{% endif %}
+                      {% if user == user2 %}<th>Delete Books</th>{% endif %}
+                    </tr>
+                {% for book in user_booklist %}
+                {% if user2 == book.owner %}
+                    <tr>
+                        <td>{{book.id}}</td><td>{{ book.title }}</td><td>{{ book.author }}</td>
+                        <td>
+                          {% if book.availability == 2 %}
+                              <button class="text-danger">Not Available</button>
+                          {% else %}
+                              <a href="{% url 'book_request' book_id=book.id %}"><button class="text-success">Available</button></a>
+                          {% endif %}
+                        </td> 
+                        <td>{{ book.genre }}</td>
+                        {% if user == user2 %}
+                        <td><a href={% url 'update_book' id=book.id %} class="btn btn-warning navbar-btn" style="color:black">Update Books</a></td>
+                        <td><a href={% url 'delete_book' id=book.id %} class="btn btn-danger navbar-btn" style="color:black">Delete Books</a></td>
+                        {% endif %}
+                    </tr> 
+                {% endif %}
+                {% endfor %}
+                </table>
+                </ul>
+              </div>
+
+              
+             {% if user == user2 %}
+              <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #333">
+                <ul class="nav navbar-nav">
+                  <li><a href={% url 'add_book' %} class="btn btn-info navbar-btn" style="color:black">Add Books</a></li>
+                </ul>
+              </nav>
+              {% else %}
+              <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #333">
+              {% endif %}
+           </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

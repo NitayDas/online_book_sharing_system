@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>login the website</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid ">
+            <header class="text-center">
+                <strong class="navbar-brand " href="#" style="color:  #273746 ">Online Book Sharing System</strong>
+            </header>
+        </div> 
+    </nav>   
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-4">
+                <div class="container-fluid" style="background-color: #e3f2fd  ">
+                    <form action="" method="post">{% csrf_token %}
+                        <h2 >Change Password</h2><br>
+
+                        <div class="input-group mb-3">
+                            <label>New Password:</label><br>
+                            <input type="password" class="form-control" placeholder="New password" name="new_password" id="new_password" required>
+                        </div>
+                      
+                        <div class="input-group mb-3">
+                            <label>Confirm Password:</label><br>
+                            <input type="password" class="form-control" placeholder="Confirm password" name="confirm_password" id="confirm_password" required>
+                        </div>
+                        <div >
+                            <br><button class="btn btn-info" >Submit</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>   
+        </div>
+    </div>
+
+</body>
+</html>

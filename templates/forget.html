@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>login the website</title>
+</head>
+<body>
+    <nav class="navbar " style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <header class="text-center">
+                <strong class="navbar-brand " href="#" style="color:  #273746 ">Online Book Sharing System</strong>
+            </header>
+        </div> 
+    </nav>  
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-5">
+            <div class="container-fluid" style="background-color: #e3f2fd">
+            <h3>foget password?</h3>
+            <p>Enter your email address. A set of instructions will be sent to your email to reset password</p>
+            <form action="" method="post">{% csrf_token %}
+                {{form}}
+                <input class="btn btn-info" type="submit" name="send mail"> 
+            </form>
+            </div>  
+        </div> 
+    </div>
+      
+</body>
+</html>

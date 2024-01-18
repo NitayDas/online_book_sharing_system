@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body {
+        background-color:   #ccd1d1;
+       }
+      .hover-element {
+            width: 100px;
+            height: 40px;
+            background-color:  #839192 ;
+            text-align: center;
+            cursor: pointer;
+        }
+
+      .hover-element:hover {
+            background-color:   #2c3e50 ;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center; 
+        }
+
+        body{
+            background-color:  ;
+        }
+
+        .search-container button {
+          padding: 6px 10px;
+          margin-top: 0px;
+          background: #ddd;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .search-container button:hover {
+          background: #ccc;
+        }
+        
+    </style>
+
+    <title>Readers</title>
+</head>
+<body>
+  
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #5F9EA0">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="{% url 'home' %}"><strong class="navbar-brand " style="color:#273746; margin:5px">Online Book Sharing System</strong></a>
+      </div>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 10px 5px 0px">Log out</a></li>
+      </ul>  
+    </div>
+  </nav> 
+</div>
+
+  
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
+  <div class="container-fluid" style="background-color: #d6dbdf  ">
+    <h3 class="text-center" style="color:  #212f3d "><strong>List of books </strong></h3><br>
+
+      <nav class="navbar  navbar-expand-lg " style="background-color: #666">
+        <div class="search-container">
+         <form method="post" action="{% url 'books' %}" enctype="multipart/form-data"> {% csrf_token %}
+            <input type="text" placeholder="Search.." name="title">
+            <button type="submit"><i class="fa fa-search"></i></button>
+         </form>
+        </div>
+      </nav>
+      
+
+    <div class="row">
+      {% for book in books %}
+       <div class="col-md-4">
+       <div class="container-fluid" style="background-color: #aab7b8">
+          <i><h3 class="card-text">{{book.title}}</h3></i>
+          <h5 class="card-text">{{book.author}}</h5>
+          <h5>genre: {{ book.genre }}</h5>
+          <a href={% url 'profile' username=book.owner %} class="btn btn-primary" style="color:yellow">Owner's Profile</a>
+          {% if user != book.owner %}
+          {% if book.availability == 2 %}
+          <a href="#"><button class="text-danger">Not Available</button></a>
+          {% else %}
+          <a href="{% url 'book_request' book_id=book.id %}"><button class="text-success">Available</button></a>
+          {% endif %}
+          {% endif %}
+        </div><br>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+  {% comment %} <div class="container-fluid">
+    <div class-"row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+          <div class="container-fluid" style="background-color:  #aab7b8  ">
+            <h4 class="text-center" style="color:  #212f3d "><strong>List of books </strong></h4><br>
+             <table>
+                {% for book in books %}
+                <tr>
+                    <td>
+                      <div class="container-fluid">
+                      </div>
+                    </td>
+                    <td><i>{{ book.title }}</i></td><td>{{ book.author }}</td>
+                    <td><a href={% url 'profile' username=book.owner %} class="btn btn-primary" style="color:yellow">{{book.owner}}</a></td> 
+                </tr>
+                {% endfor %}
+            </table><br>
+          </div>
+        </div>
+    </div>
+  </div>
+    
+    </body>
+    </html> {% endcomment %}

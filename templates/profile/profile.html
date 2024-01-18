@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .fa {
+        padding: 10px;
+        font-size: 20px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+      }
+      .fa:hover {
+        opacity: 0.7;
+      }
+      .fa-facebook {
+        background: #3B5998;
+        color: white;
+      }
+      .fa-instagram {
+        background: #55ACEE;
+        color: white;
+      }
+      .fa-telegram {
+        background: #55ACEE;
+        color: white;
+      }
+
+      body{
+            background-color:#ccd1d1;
+      }
+
+
+    </style>
+</head>
+</head>
+<body>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:#5F9EA0">
+        <div class="container-fluid">
+          <div class="navbar-header">
+           <a href="{% url 'home' %}"><strong class="navbar-brand "  style="color:  #273746; margin:5px">Online Book Sharing System</strong></a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><i><a href={% url 'profile' username=Username %} class="btn " style="color:white;margin:15px 0px 0px 50px">profile</a></i></li>
+          </ul>
+
+          <ul class="nav navbar-nav">
+            <li class="active"><i><a href={% url 'booklist' username=Username %} class="btn " style="color:black;margin:15px 0px 0px 50px">Booklist</a></i></li>
+          </ul> 
+
+          {% if user.username == Username %}
+          <ul class="nav navbar-nav">
+            <li class="active"><i><a href={% url 'see_book_request' %} class="btn " style="color:black;margin:15px 0px 0px 50px">Book requests</a></i></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="active"><i><a href={% url 'borrowing_history' %} class="btn " style="color:black;margin:15px 0px 0px 50px">Borrowing history</a></i></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" style="color:black;margin:10px 0px 0px 0px">Hi,{{ user.username }}</a></li>
+            <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 20px 0px 30px">Log out</a></li>
+          </ul> 
+          {% endif %}
+        </div>
+      </nav> 
+    </div>
+
+
+   
+    <div class="container-fluid">
+        <div class-"row">
+           <div class="col-md-2">
+           </div>
+           <div class="col-md-5">
+            <div class="container-fluid" style="background-color: #1111">
+            <h4 class="text-center"><strong>{{Username}}</strong></h4>
+            <p><img src="{{ user_profile.profile_picture.url }}" alt="profile_picture" class="img-responsive img-rounded" style="max-width: 80px;"></p>
+            <p> <strong>{{user_profile.First_name}}</strong> <strong>{{user_profile.Last_name}}</strong></p>
+            <i><p style="color:#444"> {{ user_profile.bio }}</p></i><br>
+
+            {% if user_profile.institution %}
+              <p><strong>Institution:</strong>{{user_profile.institution}}</p>
+            {% endif %}
+            
+            {% for item in users %}
+                {% if Username == item.username %}
+                    <p><strong>Email:</strong>{{item.email}}</p>
+                {% endif %}
+            {% endfor %}
+
+            <p><strong>Location:</strong> {{ user_profile.location }}</p>
+            <p><strong>Date of Birth:</strong> {{ user_profile.dob}}</p><br>
+
+            <p>
+              {% if user_profile.facebook %}
+              <a href="{{user_profile.facebook}}", target="_blank" , class="fa fa-facebook"></a>
+              {% else %}
+              <a href="#", class="fa fa-facebook"></a>
+              {% endif %}
+              
+              {% if user_profile.instagram %}
+              <a href="{{user_profile.instagram}}", target="_blank", class="fa fa-instagram"></a> 
+              {% else %}
+              <a href="#",  class="fa fa-instagram"></a>
+              {% endif %}
+
+              {% if user_profile.telegram %}
+              <a href="{{user_profile.telegram}}", target="_blank", class="fa fa-telegram"></a> 
+              {% else %}
+              <a href="#",  class="fa fa-telegram"></a>
+              {% endif %}
+            </p><br>
+
+            </div>
+            
+            {% if user.username == Username %}
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #333">
+              <ul class="nav navbar-nav">
+                <li><a href={% url 'edit_profile' %} class="btn btn-primary navbar-btn" style="color:black; margin:2px">Edit Profile</a></li>
+                <li ><a href={% url 'password_reset' %} class="btn btn-primary navbar-btn" style="color:black;margin:2px">change password</a></li>
+                <li ><a href={% url 'delete_user' username=user.username %} class="btn btn-danger navbar-btn" style="color:black;margin:2px">Delete account</a></li>
+              </ul>
+            </nav>
+            {% endif %}
+           
+            
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

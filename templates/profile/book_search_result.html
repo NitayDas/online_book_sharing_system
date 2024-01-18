@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #5F9EA0">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <strong class="navbar-brand " href="#" style="margin:5px 0px 5px 10px">Online Book Sharing System</strong>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><i><a href={% url 'home' %} class="btn " style="color:black;margin:15px 0px 10px 50px">Home</a></i></li>
+            <li class="active"><i><a href={% url 'books' %} class="btn " style="color:black;margin:15px 0px 10px 50px">Back</a><i></li>
+          </ul>
+        </div>
+      </nav> 
+   
+    <div class=container-fluid>
+      <div class="row">
+        <div class="col-md-4"></div>
+        {% for book in book %}
+         <div class="col-md-3">
+          <div class="container-fluid" style="background-color: #aab7b8">
+            <i><h3 class="card-text">{{book.title}}</h3></i>
+            <h5 class="card-text">{{book.author}}</h5><br>
+            <a href={% url 'profile' username=book.owner %} class="btn btn-primary" style="color:yellow;margin: 0px 5px 3px 0px">Owner's Profile</a>
+
+            {% if user.is_authenticated and user != book.owner %}
+              {% if book.availability == 0 %}
+              <a href="{% url 'book_request' book_id=book.id %}"><button class="text-success">Available</button></a>
+              {% else %}
+              <a href="#"><button class="text-danger">Not Available</button></a>
+              {% endif %}
+              {% endif %}<br>
+           </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+</body>
+</html>
