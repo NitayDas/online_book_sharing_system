@@ -9,9 +9,10 @@
     <title>Online Book Sharing System</title>
 
     <style>
-       body{
-        background-color: #aab7b8;
-       }
+      body{
+        background-color:#ccd1d1;
+      }
+
 
         .container-fluid {
           text-align: justify;
@@ -20,42 +21,43 @@
       {
         text-align: justify;
       }
-       
-    </style>
-</head>
-<body style="background-color:#ccd1d1;">
-<div class="container-fluid">
-<nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="{% url 'home' %}"><strong class="navbar-brand"  style="color:#273746;">Online Book Sharing System</strong></a>
-      </div>
-      <ul class="nav navbar-nav">
-          <li><i class="fas fa-book-reader" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'readers' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Reader</a></i></li>
-  
-          <li><i class="fas fa-book-open" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'books' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Books</a></i></li>
 
-          <li><i class="fas fa-address-card" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'about' %} class="btn " style="color:black;margin:14px 0px 0px -3px">About Us</a></i></li>
 
-          {% if request.user.is_authenticated %}
+      .text-orange-300 {
+        color: #fdba74; 
+      }
+    
+      
+      </style>
+    </head>
+
+    <body>
+
+    <nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
+        <di class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <strong class="text-white fs-1">Take<span class="text-orange-300">Book</span> </strong>
+            </a>
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a href={% url 'readers' %} class="btn"><i class="fas fa-book-reader" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Reader</span></i></a></li>
+              
+              <li class="nav-item"><a href={% url 'books' %} class="btn"><i class="fas fa-book-open" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Books</span></i></a></li>
+             
+              <li class="nav-item"><a href={% url 'about' %} class="btn"><i class="fas fa-address-card" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">About Us</span></i></a></li>
+    
+              {% if request.user.is_authenticated %}
           
-          <li><i class="fas fa-user" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'profile' username=request.user.username %} class="btn" style="color:black;margin:14px 0px 0px -3px">Profile</a></i></li>
-
-          <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
-
-          {% else %}
-          <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">sign in</a></i></li>
-          {% endif %}
-        
-      </ul>  
-    </div>
-  </nav>
-</div>
+              <li class="nav-item"><a href={% url 'profile' username=request.user.username %} class="btn"><i class="fas fa-user" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Profile</span></i></a></li>
+    
+              <li class="nav-item"><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
+    
+              {% else %}
+              <li class="nav-item"><a href="{% url 'login' %}" class="btn"><i class="fas fa-sign-in-alt" style="color:black;margin:8px 250px 0px 50px"><span style="color:black;margin-left:4px">sign in</span></i></a></li>
+              {% endif %}
+            
+          </ul>  
+        </div>
+      </nav>
 
 
   <div class="container-fluid">

@@ -47,9 +47,8 @@ def about(request):
 
 
 def booklist(request,username):
-    Username=username
-    user2=User.objects.get(username=Username)
-    user_booklist= Book.objects.all()
+    user2=User.objects.get(username=username)
+    user_booklist= Book.objects.filter(owner=user2)
     return render(request, 'profile/booklist.html', {'user2':user2,'user_booklist': user_booklist})
 
 def add_book(request):

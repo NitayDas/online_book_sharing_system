@@ -1,59 +1,54 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center; 
-        }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center; 
+    }
 
-        body{
-          background-color:  #d6dbdf  ;
-        }
+    body{
+      background-color:  #d6dbdf  ;
+    }
+
+    .text-orange-300 {
+      color: #fdba74; 
+    }
     </style>
 </head>
-</head>
-<body>
 
- <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:#5F9EA0">
-        <div class="container-fluid">
-          <div class="navbar-header">
-           <a href="{% url 'home' %}"><strong class="navbar-brand "  style="color:  #273746; margin:5px">Online Book Sharing System</strong></a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><i><a href={% url 'profile' username=user.username %} class="btn " style="color:black;margin:15px 0px 0px 50px">profile</a></i></li>
-          </ul>
-
-          <ul class="nav navbar-nav">
-            <li class="active"><i><a href={% url 'booklist' username=user.username %} class="btn " style="color:black;margin:15px 0px 0px 50px">Booklist</a></i></li>
-          </ul> 
-
-
-          <ul class="nav navbar-nav">
-            <li class="active"><i><a href={% url 'see_book_request' %} class="btn " style="color:black;margin:15px 0px 0px 50px">Book requests</a></i></li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li class="active"><i><a href={% url 'borrowing_history' %} class="btn " style="color:white;margin:15px 0px 0px 50px">Borrowing history</a></i></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" style="color:black;margin:10px 0px 0px 0px">Hi,{{ user.username }}</a></li>
-            <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 20px 0px 30px">Log out</a></li>
-          </ul> 
+  <body>
+  <nav class="navbar navbar-expand-lg " style="background-color:#5F9EA0;">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'home' %}"><strong class="text-white fs-1" style="margin-right:100px">Take<span class="text-orange-300">Book</span> </strong> </a>
         </div>
-      </nav>
-    </div> 
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><i><a href={% url 'profile' username=request.user.username %} class="btn " style="color:black;margin:10px 0px 0px 50px">profile</a></i></li>
+
+          <li class="nav-item"><i><a href={% url 'booklist' username=request.user.username %} class="btn " style="color:black;margin:10px 0px 0px 50px">Booklist</a></i></li>
+
+        
+          <li class="nav-item"><i><a href={% url 'see_book_request' %} class="btn " style="color:black;margin:10px 0px 0px 50px">Book requests</a></i></li>
+        
+          <li class="nav-item"><i><a href={% url 'borrowing_history' %} class="btn " style="color:white;margin:10px 0px 0px 50px">Borrowing history</a></i></li>
+
+          <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:0px 20px 0px 100px">Log out</a></li>
+        </ul> 
+    </nav> 
+  
 
 
       <div class="container-fluid">

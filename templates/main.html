@@ -20,40 +20,43 @@
       {
         text-align: justify;
       }
+
+      {% comment %} .request-form {
+        display: none;
+        margin-top: 10px;
+       } {% endcomment %}
        
     </style>
 </head>
-
 <body>
-    
-<div class="container-fluid">
-<nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="{% url 'home' %}"><strong class="navbar-brand"  style="color:#273746;margin:5px">Online Book Sharing System</strong></a>
-      </div>
-      <ul class="nav navbar-nav">
-        {% if user.is_authenticated %}
-            <li><i class="fas fa-book-reader" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'readers' username=user.username %} class="btn " style="color:black;margin:14px 0px 0px -3px">Reader</a></i></li>
-  
-            <li><i class="fas fa-book-open" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'books' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Books</a></i></li>
 
-            <li><i class="fas fa-user" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'profile' username=user.username %} class="btn" style="color:black;margin:14px 0px 0px -3px">Profile</a></i></li>
-        {% else %}
-        <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 70px"></i></li>
-        <li class="active"><i><a href={% url 'signup' %} class="btn" style="color:black;margin:14px 0px 0px -3px">Sign up</a></i></li>
-        <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
-        <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">Login</a></i></li>
-        {% endif %}
-        <li><i class="fas fa-address-card" style="color:black;margin:24px 0px 0px 60px"></i></li>
-        <li><i><a href={% url 'about' %} class="btn" style="color:black;margin:14px 0px 0px -3px">About Us</a></i></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 10px 5px 0px">Log out</a></li>
-      </ul>   
+
+<nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
+    <di class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <strong>Online Book Sharing System</strong>
+        </a>
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href={% url 'readers' %} class="btn"><i class="fas fa-book-reader" style="color:black;margin:8px 0px 0px 60px"><span style="color:black;margin-left:4px">Reader</span></i></a></li>
+          
+          <li class="nav-item"><a href={% url 'books' %} class="btn"><i class="fas fa-book-open" style="color:black;margin:8px 0px 0px 60px"><span style="color:black;margin-left:4px">Books</span></i></a></li>
+         
+          <li class="nav-item"><a href={% url 'about' %} class="btn"><i class="fas fa-address-card" style="color:black;margin:8px 0px 0px 60px"><span style="color:black;margin-left:4px">About Us</span></i></a></li>
+
+          {% if user.is_authenticated %}
+      
+          <li><a href={% url 'profile' username=user.username %} class="btn"><i class="fas fa-user" style="color:black;margin:8px 0px 0px 60px"><span style="color:black;margin-left:4px">Profile</span></i></a></li>
+
+          <li class="nav-item"><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
+
+          {% else %}
+          <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">sign in</a></i></li>
+          {% endif %}
+        
+      </ul>  
     </div>
   </nav>
-</div>
+
+</body>
+</html>

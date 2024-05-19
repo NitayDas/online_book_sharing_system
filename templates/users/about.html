@@ -20,43 +20,39 @@
       {
         text-align: justify;
       }
-       
-    </style>
-</head>
-<body>
-<div class="container-fluid">
-<nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a href="{% url 'home' %}"><strong class="navbar-brand"  style="color:#273746;">Online Book Sharing System</strong></a>
-      </div>
-      <ul class="nav navbar-nav">
-          <li><i class="fas fa-book-reader" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'readers' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Reader</a></i></li>
-  
-          <li><i class="fas fa-book-open" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'books' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Books</a></i></li>
+      .text-orange-300 {
+        color: #fdba74; 
+      }
+    
+      </style>
+    </head>
 
-          <li><i class="fas fa-address-card" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'about' %} class="btn " style="color:black;margin:14px 0px 0px -3px">About Us</a></i></li>
-
-          {% if user.is_authenticated %}
+  <body>
+    <nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
+        <di class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <strong class="text-white fs-1">Take<span class="text-orange-300">Book</span> </strong>
+            </a>
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a href={% url 'readers' %} class="btn"><i class="fas fa-book-reader" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Reader</span></i></a></li>
+              
+              <li class="nav-item"><a href={% url 'books' %} class="btn"><i class="fas fa-book-open" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Books</span></i></a></li>
+             
+              <li class="nav-item"><a href={% url 'about' %} class="btn"><i class="fas fa-address-card" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">About Us</span></i></a></li>
+    
+              {% if user.is_authenticated %}
           
-          <li><i class="fas fa-user" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li><i><a href={% url 'profile' username=user.username %} class="btn" style="color:black;margin:14px 0px 0px -3px">Profile</a></i></li>
-
-          <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
-
-          {% else %}
-          <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
-          <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">sign in</a></i></li>
-          {% endif %}
-        
-      </ul>  
-    </div>
-  </nav>
-</div>
-
+              <li class="nav-item"><a href={% url 'profile' username=user.username %} class="btn"><i class="fas fa-user" style="color:black;margin:8px 0px 0px 50px"><span style="color:black;margin-left:4px">Profile</span></i></a></li>
+    
+              <li class="nav-item"><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
+    
+              {% else %}
+              <li class="nav-item"><a href="{% url 'login' %}" class="btn"><i class="fas fa-sign-in-alt" style="color:black;margin:8px 250px 0px 50px"><span style="color:black;margin-left:4px">sign in</span></i></a></li>
+              {% endif %}
+            
+          </ul>  
+        </div>
+      </nav>
 
   <div class="container-fluid" style="background-color:#aab7b8">
     <div class="row">
@@ -84,31 +80,30 @@
 
   <div class="container-fluid" style=" background-color:#5F9EA0" >
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-sm-10 col-md-11 col-lg-5">
         <div class="container-fluid"><br>
-            <h4><strong style="color:blue">Book</strong> <strong style="color:black"> Sharing System</strong></h4>
+           <h4><strong style="color:blue">Book</strong> <strong style="color:black"> Sharing System</strong></h4>
             <h5 style="color: black ;margin:25px 0px 0px 0px">At Book Sharing System, we understand that books have the ability to transport readers to different worlds, spark imagination, and foster a love for learning. Our mission is to make this experience accessible to everyone by providing a
-                  platform for users to share, borrow, and discover a diverse range of books.
+                 platform for users to share, borrow, and discover a diverse range of books.
             </h5>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="container-fluid shadow-lg">
+      <div class="col-sm-10 col-md-11 col-lg-7">
+        <div class="container-fluid">
             <br><p class="text-center" style="color: black"><strong>Contact Us</strong></p><br>
 
             <i class="fas fa-envelope " style="color: black;margin: 0px 0px 20px 300px"></i>
             <a href ="#" style="color: black; text-decoration:none">Email : nitaydas910@gmail.com</a><br>
-            
+           
             <i class="fas fa-phone" style="color: black;margin: 0px 0px 20px 300px"></i>
             <a href ="#" style="color: black; text-decoration:none">Phone : 01642530621</a><br>
-            
-              <i class="fab fa-linkedin-in" style="color: black;margin: 0px 5px 40px 300px"></i>
+           
+             <i class="fab fa-linkedin-in" style="color: black;margin: 0px 5px 40px 300px"></i>
             <a href="#" style="color: black; text-decoration:none">Linkedin</a><br>
         </div>
       </div>
     </div>
 </div>
-
 
 </body>
 </html>

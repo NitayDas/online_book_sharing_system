@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
     <style>
         body{
             background-color: #d6dbdf ;
         }
-    </style>
 
+        .text-orange-300 {
+            color: #fdba74; 
+          }
+    
+    </style>
 </head>
 <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
-            <div class="container-fluid">
-            <div class="navbar-header">
-                <strong class="navbar-brand " href="#" style="color:  #273746 ">Online Book Sharing System</strong>
-            </div>
-            </div>
-        </nav> 
+
+    <nav class="navbar navbar-expand-lg " style="background-color:#5F9EA0;">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}"><strong class="text-white fs-1" style="margin-right:100px">Take<span class="text-orange-300">Book</span> </strong> </a>
+        </div>
+    </nav> 
+          
 
         <div class="container-fluid">
             <div class="row">
