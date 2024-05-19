@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <title>Online Book Sharing System</title>
@@ -20,6 +20,11 @@
       {
         text-align: justify;
       }
+
+      {% comment %} .request-form {
+        display: none;
+        margin-top: 10px;
+       } {% endcomment %}
        
     </style>
 </head>
@@ -28,44 +33,45 @@
 <nav class="navbar navbar-expand-lg shadow-lg " style="background-color: #5F9EA0;">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a href="{% url 'home' %}"><strong class="navbar-brand"  style="color:#273746;margin:5px">Online Book Sharing System</strong></a>
+        <a href="{% url 'home' %}"><strong class="navbar-brand"  style="color:#273746;">Online Book Sharing System</strong></a>
       </div>
       <ul class="nav navbar-nav">
-        {% if user.is_authenticated %}
-            <li><i class="fas fa-book-reader" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'readers' username=user.username %} class="btn " style="color:black;margin:14px 0px 0px -3px">Reader</a></i></li>
+          <li><i class="fas fa-book-reader" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li><i><a href={% url 'readers' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Reader</a></i></li>
   
-            <li><i class="fas fa-book-open" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'books' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Books</a></i></li>
+          <li><i class="fas fa-book-open" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li><i><a href={% url 'books' %} class="btn " style="color:black;margin:14px 0px 0px -3px">Books</a></i></li>
 
-            <li><i class="fas fa-user" style="color:black;margin:24px 0px 0px 60px"></i></li>
-            <li><i><a href={% url 'profile' username=user.username %} class="btn" style="color:black;margin:14px 0px 0px -3px">Profile</a></i></li>
-        {% else %}
-        <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 70px"></i></li>
-        <li class="active"><i><a href={% url 'signup' %} class="btn" style="color:black;margin:14px 0px 0px -3px">Sign up</a></i></li>
-        <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
-        <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">Login</a></i></li>
-        {% endif %}
-        <li><i class="fas fa-address-card" style="color:black;margin:24px 0px 0px 60px"></i></li>
-        <li><i><a href={% url 'about' %} class="btn " style="color:black;margin:14px 0px 0px -3px">About Us</a></i></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:5px 10px 5px 0px">Log out</a></li>
-      </ul>   
+          <li><i class="fas fa-address-card" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li><i><a href={% url 'about' %} class="btn " style="color:black;margin:14px 0px 0px -3px">About Us</a></i></li>
+
+          {% if user.is_authenticated %}
+          
+          <li><i class="fas fa-user" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li><i><a href={% url 'profile' username=user.username %} class="btn" style="color:black;margin:14px 0px 0px -3px">Profile</a></i></li>
+
+          <li><a href={% url 'logout' %} class="btn btn-danger navbar-btn" style="color:black;margin:3px 15px 3px 150px">Log out</a></li>
+
+          {% else %}
+          <li><i class="fas fa-sign-in-alt" style="color:black;margin:24px 0px 0px 60px"></i></li>
+          <li class="active"><i><a href={% url 'login' %} class="btn" style="color:black;margin:14px 0px 0px -3px">sign in</a></i></li>
+          {% endif %}
+        
+      </ul>  
     </div>
   </nav>
 </div>
      
-  <div class="container-fluid" style="background-color:#aab7b8">
+  <div class="container-fluid" style="background-color:#aab7b8 ; padding:12px">
     <div class="row">
-      <div class="col-md-5"><br>
+      <div class="col-sm-10 col-md-5 col-lg-5"><br>
         <div class="container-fluid">
           <h3 class="text-center" style="color:"><strong>Lets read Books and create enlighten people</strong></h3><br><br>
           <p class="text" style="font-size:15px">Booksharing website makes reading easier. People with dyslexia, blindness,cerebral palsy, and other reading barriers can customize
              their experience to suit their learning style and find virtually any book they need for school, work, or the joy of reading.</p>
         </div>   
       </div>
-      <div class="col-md-7">
+      <div class="col-sm-10 col-md-6 col-lg-7">
         <div class="container-fluid">
           <img src="https://img.freepik.com/free-photo/international-day-education-cartoon-style-with-stack-books_23-2151007431.jpg?t=st=1702827613~exp=1702831213~hmac=d899b7adca5d8d8c1fb44db7a77deefa7ed82fe4e29772cd3753a504052dc9cf&w=740" class="img-fluid"  style="height:500px; width:100% ;"> 
         </div> 
@@ -74,12 +80,12 @@
   </div>
 
   
-  <div class="container-fluid shadow-lg" style="background-color:#d6dbdf;" >
+  <div class="container-fluid" style="background-color:#d6dbdf;padding:24px 0px 24px 0px;" >
 
     <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <div class="container-fluid shadow-lg" style="background-color: #d6dbdf  ">
+      <div class="container-fluid shadow-sm" style="background-color: #d6dbdf  ">
         <h3 class="text-center" style="color:  #212f3d "><strong>List of books </strong></h3><br>
           <nav class="navbar  navbar-expand-lg " style="background-color: #666">
             <div class="search-container">
@@ -91,18 +97,18 @@
           </nav>
 
           {% if messages %}
-          <div class="messages text-center" style="background-color:">
+          <div class="messages text-center">
             {% for message in messages %}
-                <h4 class="text-warning">{{ message }}</h4>
+                <h4 class="">{{ message }}</h4>
             {% endfor %}
           </div>
           {% endif %}
     
         <div class="row">
           {% for book in books %}
-           <div class="col-md-4 shadow-lg">
-           <div class="container-fluid" style="background-color: #aab7b8">
-              <i><h3 class="card-text">{{book.title}}</h3></i>
+           <div class="col-sm-12 col-md-6 col-lg-4 shadow-lg">
+           <div class="container-fluid" style="background-color: #aab7b8; padding:8px;margin:4px">
+              <i><h4 class="card-text"><strong>{{book.title}}</strong></h4></i>
               <h5 class="card-text">{{book.author}}</h5>
               <h5>genre: {{ book.genre }}</h5>
               <a href={% url 'profile' username=book.owner %} class="btn btn-primary" style="color:yellow;margin:3px">Owner's Profile</a>
@@ -111,7 +117,15 @@
               {% if book.availability == 2 %}
               <a href="#"><button class="text-danger">Not Available</button></a>
               {% else %}
-              <a href="{% url 'book_request' book_id=book.id %}"><button class="text-success">Available</button></a>
+              <a href="" onclick="showRequestForm({{book.id}});return false"><button class="text-success">available</button></a>
+                      <div class="request-form d-none"  id="request-form-{{ book.id }}">
+                        <form method="post" action="{% url 'book_request' book_id=book.id %}">
+                          {% csrf_token %}
+                          <label >Return Date:</label>
+                          <input type="date" id="return-date-{{ book.id }}" name="schedule" required>
+                          <button type="submit" class="btn btn-primary">Request</button>
+                        </form>
+                      </div>
               {% endif %}
               {% endif %}
             </div><br>
@@ -125,7 +139,7 @@
 
 <div class="container-fluid" style=" background-color:#5F9EA0" >
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-sm-10 col-md-11 col-lg-5">
         <div class="container-fluid"><br>
            <h4><strong style="color:blue">Book</strong> <strong style="color:black"> Sharing System</strong></h4>
             <h5 style="color: black ;margin:25px 0px 0px 0px">At Book Sharing System, we understand that books have the ability to transport readers to different worlds, spark imagination, and foster a love for learning. Our mission is to make this experience accessible to everyone by providing a
@@ -133,8 +147,8 @@
             </h5>
         </div>
       </div>
-      <div class="col-md-7">
-        <div class="container-fluid shadow-lg">
+      <div class="col-sm-10 col-md-11 col-lg-7">
+        <div class="container-fluid">
             <br><p class="text-center" style="color: black"><strong>Contact Us</strong></p><br>
 
             <i class="fas fa-envelope " style="color: black;margin: 0px 0px 20px 300px"></i>
@@ -149,6 +163,40 @@
       </div>
     </div>
 </div>
+
+
+{{ room_name|json_script:"room-name" }}
+<script>
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const notificationSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/notification/'
+        + roomName
+        + '/'
+    );
+
+    notificationSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        //document.querySelector('#chat-log').value += (data.message + '\n');
+        console.log(data);
+       // document.getElementById("notifications-dropdown").innerHTML = "<li class='dropdown-item'>" + data + "</li><hr class='dropdown-divider'>" + document.getElementById("notifications-dropdown").innerHTML;
+        //document.getElementById("notification-badge").innerHTML = parseInt(document.getElementById("notification-badge").innerHTML) + 1; 
+    };
+
+    notificationSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+
+    function showRequestForm(bookId) {
+      const form = document.getElementById(`request-form-${bookId}`);
+      form.classList.toggle('d-none');
+  }
+  
+
+   
+</script>
 
 </body>
 </html>

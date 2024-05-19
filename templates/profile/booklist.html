@@ -59,22 +59,15 @@
 </div>
        
          
-      <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-5">
-                {% if messages %}
-                <div class="messages text-center" style="background-color:#333">
-                  {% for message in messages %}
-                    <h3 style="color:green">{{ message }}</h3>
-                  {% endfor %}
-                </div><br><br>
-               {% endif %}
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-       </div>
+    <div class="container-fluid text-center">
+      {% if messages %}
+      <div class="messages text-center" >
+        {% for message in messages %}
+          <h4><strong>{{ message }}</strong></h4>
+        {% endfor %}
+      </div><br><br>
+      {% endif %}
+    </div>
         
    
     <div class="container-fluid">
@@ -85,7 +78,7 @@
              <div class="container-fluid" style="background-color: #1111">
                 <h3 class="text-center"><strong>Booklist for {{ user2.username }}</strong></h3><br>
                 <ul>
-                <table>
+                <table >
                     <tr >
                       <th>Book ID</th><th>Book Name </th> <th> Author Name </th>
                        <th>status</th><th>Genre</th>

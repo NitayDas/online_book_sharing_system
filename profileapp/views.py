@@ -5,24 +5,26 @@ from .forms import UserProfileForm,BookForm
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.contrib import messages
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
+import logging
+import json
+from django.utils import timezone
+logger = logging.getLogger(__name__)
 
 
 
 def profile(request,username):
-    if request.user.is_authenticated:
-        Username=username
-        user_profile = UserProfile.objects.get(user__username=username)
-        users=User.objects.all()
-        return render(request, 'profile/profile.html', {'Username':Username,'users':users,'user_profile': user_profile} )
-    else:
-        messages.success(request,"sign-up required !")
-        return redirect('home')
+    Username=username
+    user_profile = UserProfile.objects.get(user__username=username)
+    users=User.objects.all()
+    return render(request, 'profile/profile.html', {'Username':Username,'users':users,'user_profile': user_profile} )
 
-def readers(request,username):
+def readers(request):
     users_profile= UserProfile.objects.all()
     user = User.objects.all()
-    Username=username
-    return render(request, 'reders/readers.html', {'Username':Username, 'user': user,'users_profile':users_profile})
+    # Username=username
+    return render(request, 'reders/readers.html', {'user': user,'users_profile':users_profile})
 
 @login_required
 def EditProfile(request):
@@ -57,7 +59,19 @@ def add_book(request):
         author=request.POST.get('author')
         genre=request.POST.get('genre')
         availability=request.POST.get('availability',True)
-        Book.objects.create(owner=request.user,title=title,author=author,genre=genre,availability=availability)
+        created_at=timezone.now
+        Book.objects.create(owner=request.user,title=title,author=author,genre=genre,availability=availability,created_at=created_at)
+        
+       
+        # channel_layer = get_channel_layer()
+        # async_to_sync(channel_layer.group_send)(
+        #     'notification_broadcast',  # This should match the room_group_name in the consumer
+        #     {
+        #         'type': 'send_notification',  # This should match the method name in the consumer
+        #         'message': json.dumps("Notification")
+        #     }
+        # )
+
         messages.success(request,"Added Successfully")
         return redirect('add_book')
     
@@ -109,9 +123,9 @@ def book_request(request, book_id):
         book.availability=1
         book.save()
         BookRequest.objects.create(sender=request.user,receiver=book.owner,schedule=schedule, book=book)
+        messages.success(request,"request sent successfully")
         return redirect('home')
 
-    return render(request, 'users/book_request.html', {'book': book})
 
 @login_required
 def see_book_request(request):

@@ -21,31 +21,24 @@
         </div>
       </nav> 
         
-       <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                {% if messages %}
-                <div class="messages text-center" style="background-color:#333">
-                  {% for message in messages %}
-                    <h3 style="color:green">{{ message }}</h3>
-                  {% endfor %}
-                </div><br><br>
-               {% endif %}
-            </div>
-        </div>
+       <div class="container-fluid text-center">
+            {% if messages %}
+            <div class="messages text-center" >
+              {% for message in messages %}
+                <h4><strong>{{ message }}</strong></h4>
+              {% endfor %}
+            </div><br><br>
+            {% endif %}
        </div>
         
         
         <div class="container-fluid">
             <div class="row">
-               <div class="col-md-2"></div>
-               <div class="col-md-7">
-                  <div class="container-fluid" style="background-color: #e3f2fd;">
-                  <h2>Add Books:</h2><br>
+               <div class="col-md-3"></div>
+               <div class="col-md-6">
+                  <div class="container-fluid " style="background-color: #e3f2fd;">
+                  <h3>Add Books</h3><br>
                   <form method="post" action="/add_book/" >{% csrf_token %}
-
                      <input type="text" name="title" placeholder="Enter Book Title" required><br><br>
                      <input type="text" placeholder="Enter Author Name" name="author" required><br><br>
                      <input type="text" placeholder="Genre" name="genre" required><br><br>
@@ -59,7 +52,7 @@
                   <br><a href="{% url 'booklist' username=user.username %}" class="btn btn-primary" >Back to booklist</a><br><br>
                   </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-3"></div>
             </div>
         </div>
 </body>

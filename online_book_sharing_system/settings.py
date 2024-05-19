@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'channels',
     'profileapp',
+    
 ]
 
 MIDDLEWARE = [
@@ -71,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'online_book_sharing_system.wsgi.application'
+ASGI_APPLICATION = 'online_book_sharing_system.asgi.application'
 
 
 # Database
@@ -144,3 +147,14 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'niloydas01910@gmail.com'
 
 EMAIL_HOST_PASSWORD = 'pevg ferq sret ppgt'
+
+# channel settings
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6380)],
+        },
+    },
+}

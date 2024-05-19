@@ -66,12 +66,12 @@
                 <table>
                     <tr >
                        <th>Book Name</th><th> Owner </th>
-                       <th>Borrow date</th><th>Returning date</th>
+                       <th>Request date</th><th>Returning date</th>
                        <th colspan="2">Status</th>
                     </tr>
                    {% for borrow in borrows %}
                     <tr>
-                        <td>{{ borrow.book.title }}</td><td>{{ borrow.sender }}</td>
+                        <td>{{ borrow.book.title }}</td><td>{{ borrow.receiver }}</td>
                         <td>{{ borrow.request_date }}</td><td>{{ borrow.schedule }}</td>
 
                         {% if borrow.book.availability == 1 %}

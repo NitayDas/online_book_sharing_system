@@ -10,8 +10,8 @@ from django.contrib import messages
 
 # @login_required(login_url='login')
 def homepage(request):
-    books=Book.objects.all()
-    return render(request,'home.html',{'books':books})
+    books = Book.objects.order_by('-created_at')[:25]
+    return render(request,'home.html',{'books':books,'room_name': "broadcast"})
 
 
 def loginpage(request):

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+import django.utils.timezone
 
 User=get_user_model()
 
@@ -28,6 +29,7 @@ class Book(models.Model):
     author=models.CharField(max_length=100,null=True)
     genre=models.CharField(max_length=100,null=True)
     availability = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True) 
     
     def __str__(self):
         return self.title
