@@ -10,6 +10,7 @@ from channels.layers import get_channel_layer
 import logging
 import json
 from django.utils import timezone
+from django.core.paginator import Paginator
 logger = logging.getLogger(__name__)
 
 
@@ -99,19 +100,22 @@ def delete_book(request,id):
     
     return render(request, 'profile/delete_book.html',{'book':book})
 
-def books(request):
-    books= Book.objects.all()
-    
-    # search method begin
-    if request.method=="POST":
-        title=request.POST.get('title', '')
-        book=Book.objects.filter( title=title)
-        return render(request,'profile/book_search_result.html',{'book':book})
-    
-    # serach method end
-    
-    return render(request,'profile/books.html',{'books':books})
 
+
+def books(request):
+    if request.method == "POST":
+        title = request.POST.get('title', '')
+        book_list = Book.objects.filter(title__icontains=title)
+        return render(request, 'profile/book_search_result.html', {'books': book_list})
+
+    else:
+        book_list = Book.objects.all().order_by('-created_at')
+        paginator = Paginator(book_list, 15)  # Show 15 books per page
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'profile/books.html', {'page_obj': page_obj})
 
 @login_required
 def book_request(request, book_id):
@@ -128,7 +132,7 @@ def book_request(request, book_id):
 
 @login_required
 def see_book_request(request):
-    requests = BookRequest.objects.filter(receiver=request.user)
+    requests = BookRequest.objects.filter(receiver=request.user).order_by('-request_date')
     return render(request, 'users/see_book_request.html', {'requests': requests})
 
 def confirm_request(request,book_id):
@@ -147,7 +151,7 @@ def reject_request(request,book_id):
 
 @login_required
 def borrowing_history(request):
-    borrows = BookRequest.objects.filter(sender=request.user)
+    borrows = BookRequest.objects.filter(sender=request.user).order_by('-request_date')
     return render(request, 'users/borrowing_history.html', {'borrows': borrows})
     
     

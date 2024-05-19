@@ -63,9 +63,7 @@
    
     <div class="container-fluid">
         <div class-"row">
-           <div class="col-md-2">
-           </div>
-           <div class="col-md-7">
+           <div class="col-lg-12 text-center" style="margin:24px 6px 12px 6px">
              <div class="container-fluid" style="background-color: #1111">
                 <h3 class="text-center"><strong>Booklist for {{ user2.username }}</strong></h3><br>
                 <ul>
@@ -87,7 +85,15 @@
                           {% if book.availability == 2 %}
                               <button class="text-danger">Not Available</button>
                           {% else %}
-                              <a href="{% url 'book_request' book_id=book.id %}"><button class="text-success">Available</button></a>
+                          <a href="" onclick="showRequestForm({{book.id}});return false"><button class="text-success">available</button></a>
+                          <div class="request-form d-none"  id="request-form-{{ book.id }}">
+                            <form method="post" action="{% url 'book_request' book_id=book.id %}">
+                              {% csrf_token %}
+                              <label >Return Date:</label>
+                              <input type="date" id="return-date-{{ book.id }}" name="schedule" required>
+                              <button type="submit" class="btn btn-primary">Request</button>
+                            </form>
+                          </div>
                           {% endif %}
                         </td>
                         {% endif %} 
@@ -113,6 +119,16 @@
            </div>
         </div>
     </div>
+
+
+
+    <script>
+      function showRequestForm(bookId)
+      {
+        const form=document.getElementById(`request-form-${ bookId }`);
+        form.classList.toggle('d-none');
+      }
+    </script>
 
 </body>
 </html>

@@ -10,7 +10,7 @@ from django.contrib import messages
 
 # @login_required(login_url='login')
 def homepage(request):
-    books = Book.objects.order_by('-created_at')[:25]
+    books = Book.objects.order_by('-created_at')[:15]
     return render(request,'home.html',{'books':books,'room_name': "broadcast"})
 
 
