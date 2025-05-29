@@ -26,11 +26,7 @@ SECRET_KEY = 'django-insecure-x#w=vz0zi3)16@x77#u4y2k2nvbsw@k&!p0o5rq(@r29-g7f#+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["web-production-351c.up.railway.app"]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-351c.up.railway.app',
-]
+ALLOWED_HOSTS = [ '86.48.3.219', '127.0.0.1']
 
 
 # Application definition
@@ -47,6 +43,32 @@ INSTALLED_APPS = [
     'profileapp',
     
 ]
+
+
+# CORS configuration
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173", 
+#     "https://ukilbar.online",
+#     "http://ukilbar.online" 
+# ]
+
+
+
+# For handling CSRF with cross-origin requests
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://ukilbar.online',
+#     'https://www.ukilbar.online',
+#     'http://127.0.0.1',
+# ]
+
+
+# For handling CSRF with cross-origin requests
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1',
+]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
