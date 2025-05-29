@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x#w=vz0zi3)16@x77#u4y2k2nvbsw@k&!p0o5rq(@r29-g7f#+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ '86.48.3.219', '127.0.0.1']
+ALLOWED_HOSTS = [ 'takebook.kapotakkho.online','86.48.3.219', '127.0.0.1']
 
 
 # Application definition
@@ -39,35 +39,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
-    'channels',
     'profileapp',
     
 ]
 
 
 # CORS configuration
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:5173", 
-#     "https://ukilbar.online",
-#     "http://ukilbar.online" 
-# ]
-
+CORS_ALLOWED_ORIGINS = [
+    "https://takebook.kapotakkho.online",
+    "http://takebook.kapotakkho.online" 
+]
 
 
 # For handling CSRF with cross-origin requests
 # CSRF_TRUSTED_ORIGINS = [
-#     'https://ukilbar.online',
-#     'https://www.ukilbar.online',
+#     'https://takebook.kapotakkho.online',
+#     'https://www.takebook.kapotakkho.online',
 #     'http://127.0.0.1',
 # ]
-
-
-# For handling CSRF with cross-origin requests
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1',
-]
-
-
 
 
 MIDDLEWARE = [
